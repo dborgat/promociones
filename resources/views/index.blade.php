@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentxxx</title>
   @viteReactRefresh
+  @vite('resources/css/app.css')
 </head>
 <body>
-  <div id="app"></div>
-   @vite('resources/js/app.jsx')
+  <div id="root"></div>
+  @vite('resources/js/app.jsx')
 </body>
 </html>
