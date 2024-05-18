@@ -1,23 +1,19 @@
-// resources/js/app.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Offers from './components/Offers';
+//import Register from './components/Register';
+import Home from './components/Home';
 
-const Home = () => <h1>Home Page</h1>;
-const About = () => <h1>About Page</h1>;
-
-function App() {
-    return (
-        <h1>aaaaaaaaaaaaaaaaaaaaaa</h1>
-        // <Router>
-        //     <Routes>
-        //         <Route path="/" element={<Home />} />
-        //         <Route path="/about" element={<About />} />
-        //     </Routes>
-        // </Router>
-    );
-}
-
-const root = ReactDOM.createRoot(document.getElementById('app'));
-console.log(root, '<<<<<-----------------root')
-root.render(<App />);
+ReactDOM.createRoot(document.getElementById('app')).render(
+    <React.StrictMode>
+        <h1>ASDASDASDAaSD</h1>
+        <Router>
+            <Routes>
+                {/* <Route path="/" element={<Register />} /> */}
+                <Route path="/" element={<Home />} />
+                <Route path="/offers" element={<Offers />} />
+            </Routes>
+        </Router>
+    </React.StrictMode>
+);

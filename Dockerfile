@@ -23,8 +23,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install zip \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs
+    && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/
 
 # Copiar Composer desde la imagen oficial
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -35,17 +36,17 @@ COPY . .
 # Instalar dependencias de PHP
 RUN composer install
 
+# Instalar dependencias de Node.js
+RUN npm install
+
 # Copiar el script de entrada
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 # Dar permisos de ejecución al script de entrada
 RUN chmod +x /usr/local/bin/entrypoint.sh
 
+# Exponer los puertos para PHP-FPM y Vite
+EXPOSE 9000 8000 3000
+
 # Configurar el script de entrada
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
-# Exponer el puerto para el servicio PHP-FPM
-EXPOSE 9000
-
-# Comando para iniciar PHP-FPM
-CMD ["php-fpm"]
