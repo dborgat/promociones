@@ -13,7 +13,6 @@ class Offer extends Model
         'title',
         'description',
         'discount',
-        'expires_at',
     ];
 
     public function promotionalCodes()

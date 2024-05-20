@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Offer;
+use Illuminate\Http\Request;
 use App\Models\PromotionalCode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+
 
 class OfferController extends Controller
 {
     /**
      * Display a listing of the offers.
      */
-    public function index()
+    public function getOffers(Request $request)
     {
         $offers = Offer::all();
         return response()->json($offers);

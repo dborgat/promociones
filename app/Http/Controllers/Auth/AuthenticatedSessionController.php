@@ -16,7 +16,9 @@ class AuthenticatedSessionController extends Controller
             'password' => 'required|string',
         ]);
 
-        if (! Auth::attempt($request->only('email', 'password'))) {
+        error_log('Email: ' . json_encode($request->only('email', 'password')));
+
+        if (!Auth::attempt($request->only('email', 'password'))) {
             throw ValidationException::withMessages([
                 'email' => __('auth.failed'),
             ]);
@@ -24,9 +26,12 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
+
         // Verificar si el método createToken está disponible
         if (method_exists($user, 'createToken')) {
             $token = $user->createToken('auth_token')->plainTextToken;
+
+            error_log('Token: ' . json_encode($token));
         } else {
             // Si createToken no está disponible, devolver un error
             return response()->json([
@@ -42,7 +47,11 @@ class AuthenticatedSessionController extends Controller
 
     public function destroy(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
 
         return response()->json([
             'message' => 'Logged out successfully'

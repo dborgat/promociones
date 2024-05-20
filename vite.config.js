@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import laravel from "laravel-vite-plugin";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.jsx"],
+            input: ["resources/css/app.css", "resources/js/app.tsx"],
             refresh: true,
         }),
         react(),
@@ -13,21 +13,21 @@ export default defineConfig({
     server: {
         cors: true,
         port: 3000,
-        host: '0.0.0.0',
+        host: "0.0.0.0",
         hmr: {
             clientPort: 3000,
-            host: 'localhost',
-            protocol: 'ws',
+            host: "localhost",
+            protocol: "ws",
         },
         watch: {
             usePolling: true,
         },
         proxy: {
-            '/api': {
-                target: 'http://localhost:8000',
+            "/api": {
+                target: "http://localhost:8000",
                 changeOrigin: true,
                 secure: false,
-                rewrite: (path) => path.replace(/^\/api/, ''),
+                rewrite: (path) => path.replace(/^\/api/, ""),
             },
         },
     },

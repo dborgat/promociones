@@ -15,7 +15,7 @@ class OfferFactory extends Factory
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
             'discount' => $this->faker->numberBetween(10, 50),
-            'expires_at' => $this->faker->dateTimeBetween('now', '+1 year'),
+
         ];
     }
 }

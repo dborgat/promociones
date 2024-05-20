@@ -12,9 +12,8 @@ class PromotionalCode extends Model
     protected $fillable = [
         'user_id',
         'offer_id',
-        'code',
-        'discount',
         'redeemed',
+        'code'
     ];
 
     public function user()
