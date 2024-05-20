@@ -7,6 +7,7 @@ interface Errors {
     email?: string[];
     password?: string[];
     password_confirmation?: string[];
+    general?: string[];
 }
 
 const Register: React.FC = () => {
@@ -18,8 +19,33 @@ const Register: React.FC = () => {
     const [errors, setErrors] = useState<Errors>({});
     const navigate = useNavigate();
 
+    const validateEmail = (email: string) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
     const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const newErrors: Errors = {};
+
+        if (password.length < 8) {
+            newErrors.password = [
+                "La contraseña debe tener al menos 8 caracteres",
+            ];
+        }
+
+        if (password !== passwordConfirmation) {
+            newErrors.password_confirmation = ["Las contraseñas no coinciden"];
+        }
+
+        if (!validateEmail(email)) {
+            newErrors.email = ["El correo electrónico no es válido"];
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
         try {
             const response = await axios.post("/api/register", {
                 name,
@@ -33,6 +59,10 @@ const Register: React.FC = () => {
         } catch (error: any) {
             if (error.response && error.response.status === 422) {
                 setErrors(error.response.data.errors);
+            } else {
+                setErrors({
+                    general: ["Hubo un error. Por favor, inténtelo de nuevo."],
+                });
             }
         }
     };
@@ -45,10 +75,18 @@ const Register: React.FC = () => {
 
     return (
         <div className="h-screen flex justify-center items-center">
-            <div className="text-center backdrop-blur-xl bg-blue-500/30 p-5 rounded-lg shadow-2xl">
-                <h2 className="text-gray-700 text-4xl font-bold uppercase py-5 text-center ">
-                    Register
-                </h2>
+            <div className="text-center backdrop-blur-xl bg-blue-500/30 p-5 rounded-lg shadow-2xl w-1/2">
+                <div className="grid grid-cols-2">
+                    <h2 className="text-gray-700 text-4xl font-bold uppercase py-5 justify-self-start">
+                        Register
+                    </h2>
+                    <button
+                        onClick={() => navigate(-1)}
+                        className=" backdrop-blur-xl bg-black/30 hover:text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-500 font-bold justify-self-end"
+                    >
+                        Go Home
+                    </button>
+                </div>
                 <form onSubmit={handleRegister} className="space-y-4">
                     <div>
                         <label
@@ -65,7 +103,7 @@ const Register: React.FC = () => {
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                         {errors.name && (
-                            <span className="text-red-500 text-sm">
+                            <span className="text-red-50 font-bold">
                                 {errors.name[0]}
                             </span>
                         )}
@@ -85,7 +123,7 @@ const Register: React.FC = () => {
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                         {errors.email && (
-                            <span className="text-red-500 text-sm">
+                            <span className="text-red-50 font-bold">
                                 {errors.email[0]}
                             </span>
                         )}
@@ -105,7 +143,7 @@ const Register: React.FC = () => {
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                         {errors.password && (
-                            <span className="text-red-500 text-sm">
+                            <span className="text-red-50 font-bold">
                                 {errors.password[0]}
                             </span>
                         )}
@@ -125,7 +163,7 @@ const Register: React.FC = () => {
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                         />
                         {errors.password_confirmation && (
-                            <span className="text-red-500 text-sm">
+                            <span className="text-red-50 font-bold">
                                 {errors.password_confirmation[0]}
                             </span>
                         )}

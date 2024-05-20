@@ -11,6 +11,7 @@ Route::prefix('api')->group(function () {
     Route::post('/login', [AuthenticatedSessionController::class, 'store']);
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth:sanctum');
     Route::middleware(['auth:sanctum'])->group(function () {
+        Route::get('/user', [AuthenticatedSessionController::class, 'me']);
         Route::get('/offers', [OfferController::class, 'getOffers']);
         Route::post('/offers/{offer}/generate-code', [PromotionalCodeController::class, 'generate']);
         Route::get('/promotional-codes', [PromotionalCodeController::class, 'promotionalCodeList']);

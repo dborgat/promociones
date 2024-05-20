@@ -3,13 +3,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../api/axiosInstance";
+import { useAuth } from "../context/AuthContext";
 
 const LogoutButton: React.FC = () => {
+    const { setIsUserLoggedIn } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
         await axiosInstance.post("/logout");
         localStorage.removeItem("auth_token");
+        setIsUserLoggedIn(false);
         navigate("/");
     };
 

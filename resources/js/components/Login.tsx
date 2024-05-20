@@ -21,7 +21,7 @@ const Login: React.FC = () => {
                 password,
             });
             localStorage.setItem("auth_token", response.data.access_token);
-            navigate("/offers");
+            navigate("/");
         } catch (error: any) {
             if (error.response && error.response.status === 422) {
                 setErrors(error.response.data.errors);
@@ -41,10 +41,18 @@ const Login: React.FC = () => {
 
     return (
         <div className="h-screen flex justify-center items-center">
-            <div className="text-center backdrop-blur-xl bg-blue-500/30 p-5 rounded-lg shadow-2xl">
-                <h2 className="text-gray-700 text-4xl font-bold uppercase py-5 text-center ">
-                    Login
-                </h2>
+            <div className=" backdrop-blur-xl w-1/2 bg-blue-500/30 p-5 rounded-lg shadow-2xl">
+                <div className="grid grid-cols-2">
+                    <h2 className="text-gray-700 text-4xl font-bold uppercase py-5">
+                        Login
+                    </h2>
+                    <button
+                        onClick={() => navigate(-1)}
+                        className=" backdrop-blur-xl bg-black/30 hover:text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-500 font-bold justify-self-end"
+                    >
+                        Go Home
+                    </button>
+                </div>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>
                         <label
@@ -58,7 +66,7 @@ const Login: React.FC = () => {
                             id="email"
                             value={email}
                             onChange={handleEmailChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 font"
                         />
                         {errors.email && (
                             <span className="text-red-50 font-bold">
