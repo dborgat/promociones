@@ -17,8 +17,12 @@ class OfferController extends Controller
      */
     public function getOffers(Request $request)
     {
-        $offers = Offer::all();
-        return response()->json($offers);
+        if (Auth::check()) {
+            $offers = Offer::all();
+            return response()->json($offers);
+        } else {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
     }
 
     /**

@@ -4,10 +4,9 @@ services:
             context: .
             dockerfile: Dockerfile
         volumes:
-            - .:/var/www
+            - '.:/var/www'
         ports:
-            - "3000:3000"
-            - "8000:8000"
+            - '8000:8000'
         depends_on:
             - mysql
         networks:
@@ -19,26 +18,23 @@ services:
             - DB_DATABASE=promociones
             - DB_USERNAME=root
             - DB_PASSWORD=secret
-
     mysql:
-        image: mysql:8.0
+        image: 'mysql:8.0'
         container_name: mysql
         restart: unless-stopped
         tty: true
         ports:
-            - "3306:3306"
+            - '3306:3306'
         environment:
             MYSQL_DATABASE: promociones
             MYSQL_ROOT_PASSWORD: secret
         volumes:
-            - mysql:/var/lib/mysql
+            - 'mysql:/var/lib/mysql'
         networks:
             - app-network
-
 networks:
     app-network:
         driver: bridge
-
 volumes:
     mysql:
         driver: local

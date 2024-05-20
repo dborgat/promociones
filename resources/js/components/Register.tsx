@@ -55,7 +55,7 @@ const Register: React.FC = () => {
             });
 
             localStorage.setItem("auth_token", response.data.access_token);
-            navigate("/");
+            navigate("/login");
         } catch (error: any) {
             if (error.response && error.response.status === 422) {
                 setErrors(error.response.data.errors);

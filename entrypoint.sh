@@ -35,11 +35,11 @@ fi
 # Inicia el servidor PHP-FPM en segundo plano
 php-fpm &
 
-# Inicia el servidor de desarrollo de Laravel
-php artisan serve --host=0.0.0.0 --port=8000 &
+# Inicia el servidor de desarrollo de Laravel en segundo plano
+php artisan serve --host=0.0.0.0 --port=8000 
 
-# Inicia el servidor de desarrollo de Vite
-npm run dev -- --host
+# # Inicia el servidor de desarrollo de Vite
+# npm run dev -- --host
 
 # Mantén el contenedor en ejecución
 exec "$@"

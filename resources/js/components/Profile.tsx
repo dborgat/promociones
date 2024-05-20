@@ -87,7 +87,7 @@ const Profile: React.FC = () => {
                                             : "bg-green-600"
                                     } text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700`}
                                 >
-                                    {!promocode.redeemed && "Not Used"}
+                                    {!promocode.redeemed && "USE NOW"}
                                 </button>
                             </div>
                         ))}
