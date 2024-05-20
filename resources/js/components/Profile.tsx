@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
     }, [getPromocodes]);
 
     return (
-        <div className="h-screen container mx-auto px-4 py-8 bg-slate-700/30 rounded-xl shadow-2xl">
+        <div className="container mx-auto px-4 py-8 bg-slate-700/30 rounded-xl shadow-2xl min-h-screen">
             <div className="grid grid-cols-2 gap-5 items-center mb-10">
                 <h2 className="text-5xl font-bold uppercase tracking-widest">
                     Profile

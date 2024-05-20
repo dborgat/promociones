@@ -20,8 +20,6 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        error_log('name: ' . json_encode($request->name));
-
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
