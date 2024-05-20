@@ -25,14 +25,6 @@ class PromotionalCodeController extends Controller
             error_log('Random code: ' . json_encode($randomCode));
             error_log('params: ' . json_encode($params));
 
-            /* 
-            
-            $count = PromotionalCode::where('offer_id', $params['offer_id'])
-                ->where('user_id', Auth::id())
-                ->count();
-            
-            
-            */
             PromotionalCode::create([
                 'user_id' => Auth::id(),
                 'offer_id' => $params['offer_id'],

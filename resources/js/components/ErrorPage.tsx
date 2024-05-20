@@ -1,22 +1,20 @@
-// src/components/ErrorPage.tsx
-
 import React from "react";
 import { Link } from "react-router-dom";
 
 const ErrorPage: React.FC = () => {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+        <div className="flex items-center justify-center min-h-screen">
+            <div className="backdrop-blur-xl bg-white/30 p-8 rounded-lg shadow-lg text-center">
                 <h1 className="text-3xl font-bold mb-4">Hubo un error</h1>
                 <p className="text-gray-700 mb-4">
                     Usted no tiene los permisos.
                 </p>
-                <p className="text-gray-700 mb-8">Por favor, vaya al login.</p>
+                <p className="text-gray-700 mb-8">Por favor, vaya al home.</p>
                 <Link
-                    to="/login"
+                    to="/"
                     className="bg-blue-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
                 >
-                    Ir al Login
+                    Ir al Home
                 </Link>
             </div>
         </div>

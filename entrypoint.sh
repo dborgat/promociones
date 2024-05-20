@@ -21,6 +21,9 @@ else
   php artisan migrate --seed
 fi
 
+# Verifica si la base de datos de pruebas existe
+TEST_DB_EXISTS=$(mysql -h mysql -u root -p${DB_PASSWORD} -e "SHOW DATABASES LIKE 'promociones_test';" | grep "promociones_test")
+
 if [ "$TEST_DB_EXISTS" ]; then
   echo "La base de datos de pruebas promociones_test existe."
 else

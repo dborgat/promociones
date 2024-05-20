@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import React, {
     createContext,
     useState,
@@ -9,7 +8,6 @@ import React, {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import * as authService from "../../authService";
-
 interface Promocode {
     id: number;
     title: string;
@@ -17,7 +15,6 @@ interface Promocode {
     discount: number;
     redeemed: boolean;
 }
-
 interface User {
     name: string;
     email: string;
@@ -98,10 +95,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 await authService.redeemCode(promocode);
                 fetchPromocodes();
             } catch (error: any) {
-                console.error(
-                    "Error redeeming promotional code",
-                    error.response
-                );
+                navigate("/error");
             }
         },
         [fetchPromocodes]
@@ -126,10 +120,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
                 );
                 fetchCountPromotionalCodes(); // Actualizar el contador de códigos promocionales
             } catch (error: any) {
-                console.error(
-                    "Error generating promotional code",
-                    error.response
-                );
+                navigate("/error");
             }
         },
         [fetchCountPromotionalCodes]

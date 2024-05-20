@@ -1,4 +1,3 @@
-// src/components/Offers.tsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -25,7 +24,7 @@ const Offers: React.FC = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8 bg-slate-700/30 rounded-xl shadow-2xl">
+        <div className="h-screen container mx-auto px-4 py-8 bg-slate-700/30 rounded-xl shadow-2xl">
             <div className="grid grid-cols-4 gap-5 items-center mb-10">
                 <h2 className="text-5xl font-bold uppercase tracking-widest">
                     Offers
@@ -45,7 +44,7 @@ const Offers: React.FC = () => {
                 <LogoutButton />
             </div>
             {message && (
-                <div className="backdrop-blur-xl bg-green-600/60 text-center py-5 my-5 w-1/2 rounded-xl">
+                <div className="backdrop-blur-xl bg-green-600/60 text-center py-5 my-5 rounded-xl">
                     <p className="text-white font-semibold text-4xl">
                         {message}
                     </p>
