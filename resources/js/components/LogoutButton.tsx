@@ -11,7 +11,7 @@ const LogoutButton: React.FC = () => {
         await axiosInstance.post("/logout");
         localStorage.removeItem("auth_token");
         setIsUserLoggedIn(false);
-        navigate("/");
+        navigate("/home");
     };
 
     return (

@@ -17,9 +17,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             <AuthProvider>
                 <div className="font-mono bg-gradient-to-r from-indigo-300 to-red-400 p-20 mx-auto content-center h-full">
                     <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/" element={<Register />} />
+                        <Route path="/home" element={<Home />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
                         <Route
                             path="/offers"
                             element={

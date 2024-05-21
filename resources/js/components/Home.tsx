@@ -91,7 +91,7 @@ const Home: React.FC = () => {
                             Don't have an account? Register now!
                         </p>
                         <Link
-                            to="/register"
+                            to="/"
                             className="block bg-lime-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-lime-600"
                         >
                             Register

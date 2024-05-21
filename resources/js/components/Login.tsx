@@ -21,7 +21,7 @@ const Login: React.FC = () => {
                 password,
             });
             localStorage.setItem("auth_token", response.data.access_token);
-            navigate("/");
+            navigate("/home");
         } catch (error: any) {
             if (error.response && error.response.status === 422) {
                 setErrors(error.response.data.errors);
@@ -46,12 +46,6 @@ const Login: React.FC = () => {
                     <h2 className="text-gray-700 text-4xl font-bold uppercase py-5">
                         Login
                     </h2>
-                    <button
-                        onClick={() => navigate(-1)}
-                        className=" backdrop-blur-xl bg-black/30 hover:text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-500 font-bold justify-self-end"
-                    >
-                        Go Home
-                    </button>
                 </div>
                 <form onSubmit={handleLogin} className="space-y-4">
                     <div>

@@ -33,6 +33,9 @@
         }
     },
     "scripts": {
+        "sail:up": "./vendor/bin/sail up",
+        "sail:build": "./vendor/bin/sail up --build",
+        "sail:down": "./vendor/bin/sail down",
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"

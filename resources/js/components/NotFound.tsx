@@ -10,7 +10,7 @@ const NotFoundPage: React.FC = () => {
                 </h1>
                 <p className="text-gray-700 mb-4">Por favor vuelve al home.</p>
                 <Link
-                    to="/"
+                    to="/home"
                     className="bg-blue-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-700"
                 >
                     Volver al Home

@@ -81,10 +81,10 @@ const Register: React.FC = () => {
                         Register
                     </h2>
                     <button
-                        onClick={() => navigate(-1)}
+                        onClick={() => navigate('/login')}
                         className=" backdrop-blur-xl bg-black/30 hover:text-white py-2 px-4 rounded-md shadow-sm hover:bg-red-500 font-bold justify-self-end"
                     >
-                        Go Home
+                        Ir al Login
                     </button>
                 </div>
                 <form onSubmit={handleRegister} className="space-y-4">
